@@ -126,16 +126,22 @@
         name: containerd
         state: restarted
 
-    - name: Adiciona uma chave de assinatura apt para o Kubernetes
-      apt_key:
-        url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    - name: Criar diretório /etc/apt/keyrings para apt do Kubernetes
+      file:
+        path: /etc/apt/keyrings
+        state: directory
+
+    - name: Adicione o repositório apt do Kubernetes ao sources.list
+      lineinfile:
+        path: /etc/apt/sources.list.d/kubernetes.list
+        line: "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.26/deb/ /"
+        create: yes
         state: present
 
-    - name: Adiciona repositorio apt para Kubernetes
-      apt_repository:
-        repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
-        state: present
-        filename: kubernetes.list
+    - name: Importar chave GPG para o sistema
+      shell: "curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.26/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg"
+      args:
+        warn: false
 
     - name: Instala os pacotes do Kubernetes
       apt:
@@ -144,12 +150,12 @@
         update_cache: yes
       vars:
         packages:
-        - kubelet=1.26.8-00
-        - kubeadm=1.26.8-00
-        - kubectl=1.26.8-00
+        - kubelet
+        - kubeadm
+        - kubectl
 
     - name: Inicializa o cluster Kubernetes atraves da ferramenta kubeadm
-      shell: kubeadm init --apiserver-advertise-address=172.16.1.100 --pod-network-cidr=192.168.0.0/16 --kubernetes-version=1.26.8 --ignore-preflight-errors=all > /opt/init_cluster
+      shell: kubeadm init --apiserver-advertise-address=172.16.1.100 --pod-network-cidr=192.168.0.0/16 --ignore-preflight-errors=all > /opt/init_cluster
       args:
         creates: /opt/init_cluster
         
