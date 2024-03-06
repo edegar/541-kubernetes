@@ -23,5 +23,5 @@
 
     - name: Clona repositório com os arquivos do curso para a HOME do usuario suporte
       git:
-        repo: 'https://github.com/4linux/541.git'
+        repo: 'https://github.com/4linux/541-kubernetes.git'
         dest: /home/suporte/541
