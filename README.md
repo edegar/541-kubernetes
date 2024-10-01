@@ -38,7 +38,7 @@ Criação do Laboratório
 Para criar o laboratório é necessário fazer o `git clone` desse repositório e, dentro da pasta baixada realizar a execução do `vagrant up`, conforme abaixo:
 
 ```bash
-git clone https://github.com/4linux/541-kubernetes
+git clone https://github.com/edegar/541-kubernetes
 cd 541-kubernetes/
 vagrant up
 ```
