@@ -9,11 +9,11 @@
         path: /etc/hosts
         line: "{{ item }}"
       with_items:
-        - 172.16.1.100 kube-master
-        - 172.16.1.101 kube-node1
-        - 172.16.1.102 kube-node2
-        - 172.16.1.103 kube-infra
-        - 172.16.1.202 docker-registry
+        - 192.168.230.100 kube-master
+        - 192.168.230.101 kube-node1
+        - 192.168.230.102 kube-node2
+        - 192.168.230.103 kube-infra
+        - 192.168.230.202 docker-registry
 
     - name: Remove swap do arquivo /etc/fstab
       mount:
@@ -87,7 +87,7 @@
 
     - name: Clona repositório com os arquivos do curso para a HOME do usuario suporte
       git:
-        repo: 'https://github.com/4linux/541-kubernetes.git'
+        repo: 'https://github.com/edegar/541-kubernetes.git'
         dest: /home/suporte/541
 
     - name: Adiciona uma chave de assinatura apt para o Docker
@@ -155,7 +155,7 @@
         - kubectl
 
     - name: Inicializa o cluster Kubernetes atraves da ferramenta kubeadm
-      shell: kubeadm init --apiserver-advertise-address=172.16.1.100 --pod-network-cidr=192.168.0.0/16 --ignore-preflight-errors=all > /opt/init_cluster
+      shell: kubeadm init --apiserver-advertise-address=192.168.230.100 --pod-network-cidr=192.168.240.0/20 --ignore-preflight-errors=all > /opt/init_cluster
       args:
         creates: /opt/init_cluster
         

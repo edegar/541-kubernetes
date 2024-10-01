@@ -7,9 +7,9 @@ $TTL 86400
         86400       ;Minimum TTL
 )
 		IN	NS	registry.4labs.example.
-		IN	A	172.16.1.103
+		IN	A	192.168.230.103
 
-kube-master	IN	A	172.16.1.100
-kube-node1	IN	A	172.16.1.101
-Kube-node2	IN	A	172.16.1.102
-registry	IN	A	172.16.1.103
+kube-master	IN	A	192.168.230.100
+kube-node1	IN	A	192.168.230.101
+Kube-node2	IN	A	192.168.230.102
+registry	IN	A	192.168.230.103

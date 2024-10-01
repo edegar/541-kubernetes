@@ -2,7 +2,7 @@
 - name: kube-master
   box: devopsbox/ubuntu-20.04
   hostname: kube-master
-  ipaddress: 172.16.1.100
+  ipaddress: 192.168.230.100
   memory: 3584
   cpus: 2
   provision: provision/ansible/kube-master.yaml
@@ -10,7 +10,7 @@
 - name: kube-node1
   box: devopsbox/ubuntu-20.04
   hostname: kube-node1
-  ipaddress: 172.16.1.101
+  ipaddress: 192.168.230.101
   memory: 2560
   cpus: 2
   provision: provision/ansible/kube-node1.yaml
@@ -18,7 +18,7 @@
 - name: kube-node2
   box: devopsbox/ubuntu-20.04
   hostname: kube-node2
-  ipaddress: 172.16.1.102
+  ipaddress: 192.168.230.102
   memory: 2560
   cpus: 2
   provision: provision/ansible/kube-node2.yaml
@@ -26,7 +26,7 @@
 - name: kube-infra
   box: devopsbox/ubuntu-20.04
   hostname: kube-infra
-  ipaddress: 172.16.1.103
+  ipaddress: 192.168.230.103
   memory: 512
   cpus: 1
   provision: provision/ansible/kube-infra.yaml

@@ -9,11 +9,11 @@
         path: /etc/hosts
         line: "{{ item }}"
       with_items:
-        - 172.16.1.110 kube-proxy
-        - 172.16.1.111 kube-master1
-        - 172.16.1.112 kube-master2
-        - 172.16.1.113 kube-master3
-        - 172.16.1.114 kube-worker1
+        - 192.168.230.110 kube-proxy
+        - 192.168.230.111 kube-master1
+        - 192.168.230.112 kube-master2
+        - 192.168.230.113 kube-master3
+        - 192.168.230.114 kube-worker1
 
     - name: Adiciona usuario suporte
       user:
@@ -23,5 +23,5 @@
 
     - name: Clona repositório com os arquivos do curso para a HOME do usuario suporte
       git:
-        repo: 'https://github.com/4linux/541-kubernetes.git'
+        repo: 'https://github.com/edegar/541-kubernetes.git'
         dest: /home/suporte/541

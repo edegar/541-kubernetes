@@ -9,11 +9,11 @@
         path: /etc/hosts
         line: "{{ item }}"
       with_items:
-        - 172.16.1.100 kube-master
-        - 172.16.1.101 kube-node1
-        - 172.16.1.102 kube-node2
-        - 172.16.1.103 kube-infra
-        - 172.16.1.202 docker-registry
+        - 192.168.230.100 kube-master
+        - 192.168.230.101 kube-node1
+        - 192.168.230.102 kube-node2
+        - 192.168.230.103 kube-infra
+        - 192.168.230.202 docker-registry
 
     - name: Adiciona usuario suporte
       user:
@@ -38,7 +38,7 @@
         
     - name: Clona repositório com os arquivos do curso para a HOME do usuario suporte
       git:
-        repo: 'https://github.com/4linux/541-kubernetes.git'
+        repo: 'https://github.com/edegar/541-kubernetes.git'
         dest: /home/suporte/541
         
     - name: Adiciona usuario analista
@@ -168,8 +168,8 @@
         path: /etc/exports
         line: "{{ item }}"
       with_items:
-        - /nfs 172.16.1.0/24(rw,no_root_squash,no_subtree_check)
-        - /backups 172.16.1.0/24(rw,no_root_squash,no_subtree_check)
+        - /nfs 192.168.230.0/24(rw,no_root_squash,no_subtree_check)
+        - /backups 192.168.230.0/24(rw,no_root_squash,no_subtree_check)
 
     - name: Reinicia o service do nfs-kernel-server
       systemd:
@@ -200,9 +200,9 @@
         group: bind
         mode: 0644
 
-    - name: Criando o arquivo 1.16.172.db
+    - name: Criando o arquivo 230.168.192.db
       copy:
-        src: files/1.16.172.db
+        src: files/230.168.192.db
         dest: /etc/bind
         owner: root
         group: bind
