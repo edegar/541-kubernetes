@@ -39,7 +39,8 @@ Para criar o laboratório é necessário fazer o `git clone` desse repositório 
 
 ```bash
 git clone https://github.com/edegar/541-kubernetes
-cd 541-kubernetes/
+cd 541-kubernetes
+export VAGRANT_DEFAULT_PROVIDER=virtualbox
 vagrant up
 ```
 
